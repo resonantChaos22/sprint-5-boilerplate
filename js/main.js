@@ -5,6 +5,7 @@ var api = {
 var cargarPagina = function(){
     cargarTemas();
     $("#crearTema").click(crearTema);
+    $("#cancelarBusqueda").click(limpiarBusqueda);
     $("#agregarTema").submit(agregarTema);
     $("#busqueda").submit(filtrarTemas);
 };
@@ -59,16 +60,14 @@ var agregarTema = function(e) {
 
 var filtrarTemas = function (e) {
 	e.preventDefault();
-	var criterioBusqueda = $("#buscar").val().toLowerCase();
+	var criterioBusqueda = $("#buscar").val().toLowerCase();    
 	var temasFiltrados = $(".tituloTema").filter(function (indice,tema) {
                 
         if(tema.innerHTML.toLowerCase().indexOf(criterioBusqueda) >= 0){
             return tema.id;
         }
 	});   
-    console.log(temasFiltrados);
     imprimir(temasFiltrados);
-	//imprimir(temasFiltrados);
 };
 
 var imprimir = function (temas) {
@@ -76,12 +75,15 @@ var imprimir = function (temas) {
     $listaTemas.html("");
     var tareasFiltradas = [];
     for(var i=0; i< numTemas; i++){
-        console.log(api.url + temas[i].id)
         $.getJSON(api.url + temas[i].id ,verTema);
     };
 };
 
-
+var limpiarBusqueda = function(){
+    $("#buscar").val("");
+    $listaTemas.html("");
+    cargarTemas();
+};
 
 
 $(document).ready(cargarPagina);
