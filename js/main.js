@@ -8,6 +8,7 @@ var cargarPagina = function(){
     $("#cancelarBusqueda").click(limpiarBusqueda);
     $("#agregarTema").submit(agregarTema);
     $("#busqueda").submit(filtrarTemas);
+    $(document).on("click",".respuestas", verRespuestas);
 };
 
 var $listaTemas = $("#temas");
@@ -18,23 +19,31 @@ var cargarTemas = function(){
     });
 };
 
+var plantillaVer = '<a class="waves-effect waves-light btn respuestas" aria-hidden="true" href="verTopic.html" data-url="__url_id__"><i class="material-icons">zoom_in</i></a>';
+
+var plantilla = "";
+
 var verTema = function(tema){
     var autor = tema.author_name;
     var titulo = tema.content;
     var respuestas = tema.responses_count;
     var id = tema.id;
+    
+    plantilla = plantillaVer.replace("__url_id__", api.url + id);
    
     //Creacion de fila
-    var $tr = $("<tr />", {"data-id": id});
+    var $tr = $("<tr />");
     //Celda de titulo
-    var $tituloTd= $("<td />", {"class": "tituloTema", "id": id});
-    $tituloTd.text(titulo);
+    var $tituloTd= $("<td />", {"class": "tituloTema respuestas", "id": id});
+    var $tituloA= $("<a />", {"href": "verTopic.html", "data-url": api.url + id});
+    $tituloTd.append($tituloA.text(titulo));
     //Celda de autor
-    var $autorTd= $("<td />");
+    var $autorTd= $("<td />", {"class": "respuestas"});
     $autorTd.text(autor);
     // Celda de respuestas
-    var $respuestasTd = $("<td />").text(respuestas);
-    $tr.append($tituloTd).append($autorTd).append($respuestasTd);
+    var $respuestasTd = $("<td />", {"class": "respuestas"}).text(respuestas);
+    var $verRespuestas = $("<td />").html(plantilla);
+    $tr.append($tituloTd).append($autorTd).append($respuestasTd).append($verRespuestas);
     $listaTemas.append($tr);   
 };
 
@@ -83,6 +92,11 @@ var limpiarBusqueda = function(){
     $("#buscar").val("");
     $listaTemas.html("");
     cargarTemas();
+};
+
+var verRespuestas = function(){    
+    localStorage.urlRespuestas = $(this).data("url");
+    console.log("localStorage.urlRespuestas");
 };
 
 
