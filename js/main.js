@@ -8,7 +8,7 @@ var cargarPagina = function(){
     $("#cancelarBusqueda").click(limpiarBusqueda);
     $("#agregarTema").submit(agregarTema);
     $("#busqueda").submit(filtrarTemas);
-    $(document).on("click",".respuestas", verRespuestas);
+    //$(document).on("click",".respuestas", verRespuestas);
 };
 
 var $listaTemas = $("#temas");
@@ -19,7 +19,7 @@ var cargarTemas = function(){
     });
 };
 
-var plantillaVer = '<a class="waves-effect waves-light btn respuestas" aria-hidden="true" href="verTopic.html" data-url="__url_id__"><i class="material-icons">zoom_in</i></a>';
+var plantillaVer = '<a class="waves-effect waves-light btn respuestas" aria-hidden="true" href="__url_id__"><i class="material-icons">zoom_in</i></a>';
 
 var plantilla = "";
 
@@ -29,13 +29,13 @@ var verTema = function(tema){
     var respuestas = tema.responses_count;
     var id = tema.id;
     
-    plantilla = plantillaVer.replace("__url_id__", api.url + id);
+    plantilla = plantillaVer.replace("__url_id__", "verTopic.html?topic_id=" + id);
    
     //Creacion de fila
     var $tr = $("<tr />");
     //Celda de titulo
     var $tituloTd= $("<td />", {"class": "tituloTema respuestas", "id": id});
-    var $tituloA= $("<a />", {"href": "verTopic.html", "data-url": api.url + id});
+    var $tituloA= $("<a />", {"href": "verTopic.html?topic_id="+ id});
     $tituloTd.append($tituloA.text(titulo));
     //Celda de autor
     var $autorTd= $("<td />", {"class": "respuestas"});
@@ -92,11 +92,6 @@ var limpiarBusqueda = function(){
     $("#buscar").val("");
     $listaTemas.html("");
     cargarTemas();
-};
-
-var verRespuestas = function(){    
-    localStorage.urlRespuestas = $(this).data("url");
-    console.log("localStorage.urlRespuestas");
 };
 
 

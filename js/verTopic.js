@@ -4,3 +4,13 @@ var topicId = getParameterByName('topic_id');
 if(topicId){
   alert("El topic ID es:"+topicId);
 }
+
+/*var cargarPaginaRespuestas = function (){
+    verRespuestasTema();
+    
+    $("#seccRespuestas")
+    
+};
+
+
+$(document).redy(cargarPaginaRespuestas);*/
