@@ -4,15 +4,34 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foro Sprint 5</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
 
-    <h1>Aqui van todos los temas</h1>
+    <h1 class="center-align">Foro Sprint 5</h1>
+    
+    <div class="row">
+        <a class="waves-effect waves-light btn col s4 right">+Crear Tema</a>
+    </div>
+    
+    
+    <table class="table striped">
+        <thead>
+            <th>Tema</th>
+            <th>Autor</th>
+            <th>Respuestas</th>
+        </thead>
+        <tbody id="temas"></tbody>
+    </table>
+    
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    
+    <script src="js/materialize.min.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
     
