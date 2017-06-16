@@ -2,6 +2,7 @@ var topicId = getParameterByName('topic_id');
 var cargarPagina = function(){
     cargarRespuestas();
     $("#crearRespuesta").click(crearRespuesta);
+    $("#cancelar").click(ocultar);
     $("#agregarTema").submit(agregarTema);
 
     //Solo por propositos de debug
@@ -57,6 +58,10 @@ var crearRespuesta = function() {
     $("#tarjetaAgregar").removeClass("hide");
 };
 
+var ocultar = function() {
+    $("#tarjetaAgregar").addClass("hide");
+};
+
 var agregarTema = function(e) {
     e.preventDefault();
     $("#seccRespuestas").html("");
@@ -68,7 +73,7 @@ var agregarTema = function(e) {
         content: titulo
     }, function(respuesta){
         cargarRespuestas(respuesta);
-        $("#tarjetaAgregar").addClass("hide");        
+        ocultar();        
     });
 };
 

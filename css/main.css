@@ -5,3 +5,5 @@ a{
     text-decoration: none;
     color: black;
 }
+.material-icons.md-48 { font-size: 48px; }
+.row .col.s9 { margin-left: initial; }
