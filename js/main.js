@@ -8,7 +8,6 @@ var cargarPagina = function(){
     $("#cancelarBusqueda").click(limpiarBusqueda);
     $("#agregarTema").submit(agregarTema);
     $("#busqueda").submit(filtrarTemas);
-    //$(document).on("click",".respuestas", verRespuestas);
 };
 
 var $listaTemas = $("#temas");
@@ -61,7 +60,6 @@ var agregarTema = function(e) {
         content: titulo,
         responses_count: respuesta
     }, function(tema){
-        console.log(tema);
         verTema(tema);
         $("#tarjetaAgregar").addClass("hide");        
     });
