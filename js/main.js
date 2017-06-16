@@ -6,9 +6,9 @@ var cargarPagina = function(){
     cargarTemas();
     $("#crearTema").click(crearTema);
     $("#cancelarBusqueda").click(limpiarBusqueda);
+    $("#cancelar").click(ocultar);
     $("#agregarTema").submit(agregarTema);
     $("#busqueda").submit(filtrarTemas);
-    //$(document).on("click",".respuestas", verRespuestas);
 };
 
 var $listaTemas = $("#temas");
@@ -51,6 +51,10 @@ var crearTema = function() {
     $("#tarjetaAgregar").removeClass("hide");
 };
 
+var ocultar = function() {
+    $("#tarjetaAgregar").addClass("hide");
+};
+
 var agregarTema = function(e) {
     e.preventDefault();
     var autor = $("#autorAgregar").val();
@@ -61,9 +65,8 @@ var agregarTema = function(e) {
         content: titulo,
         responses_count: respuesta
     }, function(tema){
-        console.log(tema);
         verTema(tema);
-        $("#tarjetaAgregar").addClass("hide");        
+        ocultar();        
     });
 };
 
